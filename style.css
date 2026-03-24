@@ -1,4 +1,3 @@
-/* --- VARIJABLE --- */
 :root {
     --primary-color: #2c3e50;
     --accent-color: #3498db;
@@ -7,7 +6,6 @@
     --transition: all 0.3s ease;
 }
 
-/* --- OSNOVNI RESET --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -24,7 +22,7 @@ body {
     min-height: 100vh;
     width: 100%;
     max-width: 100vw;
-    overflow-x: hidden; /* Sprječava vodoravni scroll cijele stranice */
+    overflow-x: hidden;
 }
 
 header {
@@ -39,20 +37,19 @@ main {
     width: 100%;
 }
 
-/* --- NAVIGACIJA (Popravljena za mobitele) --- */
 nav {
     background-color: #34495e;
-    padding: 0 2%; /* Smanjen bočni padding */
+    padding: 0 2%;
     width: 100%;
 }
 
 .nav-links {
     display: flex;
-    flex-direction: row; /* Forsiramo red na svim uređajima */
+    flex-direction: row;
     list-style: none;
-    justify-content: center; /* Centrirano */
+    justify-content: center;
     align-items: center; 
-    flex-wrap: nowrap; /* Sprječava bježanje gumbova u novi red */
+    flex-wrap: nowrap;
 }
 
 .nav-links li { 
@@ -64,16 +61,15 @@ nav {
 .dropbtn {
     color: white;
     text-decoration: none;
-    padding: 1rem 0.8rem; /* Smanjen padding da stane u red */
+    padding: 1rem 0.8rem;
     display: block;
     font-weight: bold;
-    font-size: 0.9rem; /* Malo manji font za bolji fit */
+    font-size: 0.9rem;
     background: none;
     border: none;
     cursor: pointer;
     transition: var(--transition);
-    white-space: nowrap; /* Tekst ostaje u jednom redu */
-    list-style: none;
+    white-space: nowrap;
 }
 
 .nav-links li a:hover, 
@@ -82,7 +78,6 @@ nav {
     color: var(--accent-color);
 }
 
-/* Dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -104,7 +99,35 @@ nav {
     font-size: 0.85rem;
 }
 
-/* --- GLAVNI RASPODRED (GRID) --- */
+.btn-more {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase; 
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    text-align: center;
+}
+
+.btn-more:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    color: white;
+}
+
+.btn-more:active {
+    transform: translateY(-1px);
+}
+
 .main-grid {
     display: grid;
     grid-template-columns: 1fr 320px; 
@@ -115,7 +138,6 @@ nav {
     width: 100%;
 }
 
-/* --- TABLICA (Responzivni kontejner) --- */
 .table-container {
     background: var(--white);
     padding: 15px;
@@ -126,7 +148,7 @@ nav {
 }
 
 .scroll-wrapper {
-    overflow-x: auto; /* Omogućuje scroll samo unutar tablice */
+    overflow-x: auto;
     width: 100%;
     -webkit-overflow-scrolling: touch;
 }
@@ -135,7 +157,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.85rem;
-    min-width: 500px; /* Tablica se neće zgnječiti ispod ovoga */
+    min-width: 500px;
 }
 
 th, td {
@@ -144,7 +166,6 @@ th, td {
     text-align: center;
 }
 
-/* --- SIDEBAR I SLIKA --- */
 .sidebar-right {
     background: var(--white);
     padding: 20px;
@@ -155,26 +176,22 @@ th, td {
 
 .interactive-img {
     width: 100%;
-    max-width: 100%; /* Ključno: slika se smanjuje s ekranom */
+    max-width: 100%;
     height: auto;
     border-radius: 5px;
     display: block;
     margin: 0 auto;
 }
 
-/* --- MEDIA QUERIES --- */
-
-/* Za tablete (Ispod 1000px) - Sidebar ide ispod */
 @media (max-width: 1000px) {
     .main-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* Za mobitele (Ispod 600px) */
 @media (max-width: 600px) {
     .nav-links li a, .dropbtn {
-        padding: 0.8rem 0.5rem; /* Ekstremno smanjen prostor za gumbe */
+        padding: 0.8rem 0.5rem;
         font-size: 0.8rem;
     }
 
