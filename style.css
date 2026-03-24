@@ -1,4 +1,4 @@
-/* --- 1. OSNOVNE POSTAVKE I VARIJABLE --- */
+/* --- VARIJABLE --- */
 :root {
     --primary-color: #2c3e50;
     --accent-color: #3498db;
@@ -7,6 +7,7 @@
     --transition: all 0.3s ease;
 }
 
+/* --- OSNOVNI RESET --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,52 +19,61 @@ body {
     background-color: var(--bg-color);
     color: #333;
     line-height: 1.6;
-    /* Sticky footer setup */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; /* Sprječava vodoravni scroll cijele stranice */
 }
 
-/* Osigurava da sadržaj gura footer prema dolje */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
 main {
     flex: 1;
+    width: 100%;
 }
 
-/* --- 2. NAVIGACIJA (Lijevo poravnata + Poravnati gumbi) --- */
+/* --- NAVIGACIJA (Popravljena za mobitele) --- */
 nav {
     background-color: #34495e;
-    padding: 0 5%;
+    padding: 0 2%; /* Smanjen bočni padding */
+    width: 100%;
 }
 
 .nav-links {
     display: flex;
+    flex-direction: row; /* Forsiramo red na svim uređajima */
     list-style: none;
-    justify-content: flex-start;
-    align-items: center; /* Vertikalno centrira linkove i gumbe */
+    justify-content: center; /* Centrirano */
+    align-items: center; 
+    flex-wrap: nowrap; /* Sprječava bježanje gumbova u novi red */
 }
 
 .nav-links li { 
     position: relative; 
-    display: flex;
-    align-items: center;
+    list-style: none;
 }
 
-/* Izjednačavanje stilova za <a> i <button> da budu u ravnini */
 .nav-links li a, 
 .dropbtn {
     color: white;
     text-decoration: none;
-    padding: 1.2rem 1.5rem;
+    padding: 1rem 0.8rem; /* Smanjen padding da stane u red */
     display: block;
     font-weight: bold;
-    font-family: inherit; /* Uzima font od body-a */
-    font-size: 1rem;
+    font-size: 0.9rem; /* Malo manji font za bolji fit */
     background: none;
     border: none;
     cursor: pointer;
-    margin: 0;
-    line-height: normal; /* Popravlja vertikalni razmak */
     transition: var(--transition);
+    white-space: nowrap; /* Tekst ostaje u jednom redu */
+    list-style: none;
 }
 
 .nav-links li a:hover, 
@@ -72,15 +82,17 @@ nav {
     color: var(--accent-color);
 }
 
+/* Dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%; /* Prikazuje se točno ispod */
+    top: 100%; 
     left: 0;
     background-color: var(--primary-color);
-    min-width: 100px;
+    min-width: 140px;
     z-index: 1000;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    list-style: none;
 }
 
 .dropdown:hover .dropdown-content {
@@ -89,132 +101,96 @@ nav {
 
 .dropdown-content li a {
     padding: 10px 15px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-/* --- 3. GLAVNI RASPORED (GRID) --- */
+/* --- GLAVNI RASPODRED (GRID) --- */
 .main-grid {
     display: grid;
-    /* Fiksiramo desni stupac na 320px da ga tablica ne bi smanjila */
     grid-template-columns: 1fr 320px; 
-    gap: 30px;
-    padding: 40px 5%;
-    max-width: 1400px;
+    gap: 20px;
+    padding: 20px 5%;
+    max-width: 1200px;
     margin: 0 auto;
-    align-items: start;
+    width: 100%;
 }
 
-/* --- 4. OPTIMIZACIJA TABLICE (Manja i preglednija) --- */
+/* --- TABLICA (Responzivni kontejner) --- */
 .table-container {
     background: var(--white);
-    padding: 20px;
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    min-width: 0; /* Sprječava pucanje grida zbog širokog sadržaja */
+    width: 100%;
+    overflow: hidden;
 }
 
 .scroll-wrapper {
-    overflow-x: auto; /* Horizontalni scroll ako je tablica preširoka */
+    overflow-x: auto; /* Omogućuje scroll samo unutar tablice */
     width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.85rem; /* Smanjena slova da tablica bude uža */
-}
-
-th {
-    background-color: var(--accent-color);
-    color: white;
-    text-transform: uppercase;
+    font-size: 0.85rem;
+    min-width: 500px; /* Tablica se neće zgnječiti ispod ovoga */
 }
 
 th, td {
-    padding: 8px 6px; /* Manji padding štedi prostor */
+    padding: 10px 8px;
     border: 1px solid #ddd;
     text-align: center;
 }
 
-tr:nth-child(even) { background-color: #f9f9f9; }
-tr:hover { background-color: #f1f1f1; }
-
-/* --- 5. SIDEBAR (SLIKA DESNO) --- */
+/* --- SIDEBAR I SLIKA --- */
 .sidebar-right {
     background: var(--white);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    /* Osigurava da sidebar ostane čvrst */
     width: 100%;
 }
 
 .interactive-img {
     width: 100%;
+    max-width: 100%; /* Ključno: slika se smanjuje s ekranom */
     height: auto;
     border-radius: 5px;
-    opacity: 0.8; 
-    transition: var(--transition);
     display: block;
+    margin: 0 auto;
 }
 
-.interactive-img:hover {
-    opacity: 1;
-    transform: scale(1.05);
-}
+/* --- MEDIA QUERIES --- */
 
-.btn-more {
-    display: inline-block;    /* Omogućuje stiliziranje linka kao gumba */
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;    /* Miče podcrtavanje teksta */
-    padding: 8px 16px;        /* Smanjen padding (gore-dolje, lijevo-desno) */
-    margin-top: 15px;
-    width: auto;              /* Gumb je širok samo onoliko koliko je dug tekst */
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 0.9rem;        /* Lagano smanjen font */
-    font-weight: bold;
-    transition: var(--transition);
-}
-
-.btn-more:hover {
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Blaga sjena na hover za bolji efekt */
-}
-
-/* --- 6. RESPONZIVNOST --- */
-@media (max-width: 1150px) {
+/* Za tablete (Ispod 1000px) - Sidebar ide ispod */
+@media (max-width: 1000px) {
     .main-grid {
-        /* Prebacuje u jedan stupac na tabletima/mobitelima */
-        grid-template-columns: 1fr; 
-    }
-
-    .sidebar-right {
-        order: 2; /* Slika ide ispod tablice */
-    }
-
-    .table-container {
-        order: 1;
+        grid-template-columns: 1fr;
     }
 }
 
+/* Za mobitele (Ispod 600px) */
 @media (max-width: 600px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
+    .nav-links li a, .dropbtn {
+        padding: 0.8rem 0.5rem; /* Ekstremno smanjen prostor za gumbe */
+        font-size: 0.8rem;
     }
-    .nav-links li {
-        width: 100%;
+
+    .main-grid {
+        padding: 15px 3%;
     }
-    .dropdown-content {
-        position: static;
-        width: 100%;
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    header h1 {
+        font-size: 1.3rem;
     }
 }
 
-/* --- 7. FOOTER --- */
 footer {
     background-color: var(--primary-color);
     color: white;

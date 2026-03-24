@@ -1,4 +1,3 @@
-/* --- STIL GALERIJE --- */
 .galerija {
     padding: 20px;
     text-align: center;
@@ -6,7 +5,6 @@
 
 .galerija-grid {
     display: grid;
-    /* Responzivni prikaz: automatski broj stupaca ovisno o širini ekrana */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
@@ -26,15 +24,13 @@
     display: block;
     border-radius: 4px;
     
-    /* PROMJENA 1: Grayscale efekt (crno-bijelo) */
     filter: grayscale(100%); 
     
-    /* PROMJENA 2: Unutarnja sjena i tranzicija */
     transition: filter 0.5s ease, transform 0.3s ease;
 }
 
 .galerija_slika img:hover {
-    filter: grayscale(0%); /* Vraća boju na hover */
+    filter: grayscale(0%); 
     transform: scale(1.02);
 }
 
@@ -44,9 +40,8 @@ figcaption {
     color: #555;
 }
 
-/* --- LIGHTBOX LOGIKA (Bez JS) --- */
 .lightbox {
-    display: none; /* Skriveno po defaultu */
+    display: none;
     position: fixed;
     z-index: 9999;
     top: 0;
@@ -57,7 +52,6 @@ figcaption {
     text-align: center;
 }
 
-/* Kada je ID slike u URL-u (npr. #img1), prikaži ovaj div */
 .lightbox:target {
     display: flex;
     justify-content: center;
